@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Die Schittigs",
+      "authorEmail": "tobias@dieschittigs.de",
+      "authorUrl": "https://www.dieschittigs.de"
+    }
+  }
+}
