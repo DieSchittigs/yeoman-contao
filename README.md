@@ -1,19 +1,18 @@
 # generator-contao [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Generator for Contao 4.+ with SCSS and ES6 via WebPack
+> Generator for Contao 4.4+ with SCSS and ES6 via WebPack
 
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-contao using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
-npm install -g yo
-npm install -g generator-contao
+yarn global add yo @dieschittigs/generator-contao
 ```
 
 Then generate your new project:
 
 ```bash
-yo contao
+yo @dieschittigs/contao
 ```
 
 ## Getting To Know Yeoman

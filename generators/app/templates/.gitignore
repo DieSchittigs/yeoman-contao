@@ -6,6 +6,8 @@ localconfig.php
 /vendor
 /assets
 /var
+/system
 /files/theme_**
+/web
 mix-manifest.json
 .yo*

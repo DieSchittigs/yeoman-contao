@@ -1,0 +1,6 @@
+main .ce_hyperlink {
+    text-align: center;
+    a {
+        @extend .button;
+    }
+}

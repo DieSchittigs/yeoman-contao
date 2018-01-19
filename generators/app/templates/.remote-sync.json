@@ -1,0 +1,23 @@
+{
+    "transport": "<%= preview_ftp_transport %>",
+    "uploadOnSave": true,
+    "useAtomicWrites": true,
+    "deleteLocal": false,
+    "hostname": "<%= preview_ftp_hostname %>",
+    "target": "<%= preview_ftp_target %>",
+    "ignore": [
+        ".remote-sync.json",
+        "dploy.yaml",
+        ".git/**",
+        "/src/**"
+    ],
+    "username": "<%= preview_ftp_username %>",
+    "password": "<%= preview_ftp_password %>",
+    "watch": [
+        "/files/theme_<%= theme %>/js/script.js",
+        "/files/theme_<%= theme %>/css/style.css"
+    ],
+    "watch-ds": [
+        "/files/**"
+    ]
+}

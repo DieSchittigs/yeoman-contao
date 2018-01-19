@@ -1,0 +1,24 @@
+main .ce_text {
+
+    // Standardized floats
+    .float_left {
+        float: left;
+        margin-right: 1em;
+        margin-bottom: 1em;
+        max-width: 40%;
+    }
+    .float_right {
+        float: right;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        max-width: 40%;
+    }
+    .float_above {
+        margin-bottom: 1em;
+    }
+    .float_below {
+        margin-top: 1em;
+    }
+
+
+}

@@ -1,0 +1,31 @@
+// Global
+@import '/global/settings';
+@import '/global/normalize';
+@import '/global/typo';
+@import '/global/layout';
+@import '/global/helpers';
+
+// Custom fonts
+// Add FontAwesome? yarn add font-awesome
+// @import '~font-awesome/scss/font-awesome'
+
+// Global elements
+@import '/elements_global/ce_form';
+
+// Header elements
+@import '/elements_header/mod_navigation_main';
+
+// Footer elements
+
+
+// Main column elements
+@import '/elements_main/ce_text';
+@import '/elements_main/ce_hyperlink';
+@import '/elements_main/ce_image';
+@import '/elements_main/ce_gallery';
+
+// Side column elements
+
+
+// Page-Specific Styles
+@import '/pages/index';

@@ -1,0 +1,59 @@
+body {
+    font-family: $font-family-text;
+    font-weight: $font-weight-normal;
+    line-height: 1.5;
+    color: $color-text;
+    font-size: 17px;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+strong, b {
+    font-weight: $font-weight-bold;
+}
+
+a {
+    color: $color-active;
+    &:hover {
+        color: $color-active-over;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-headline;
+    font-weight: $font-weight-bold;
+    margin: 0.5em 0 1em 0;
+}
+
+h1 {
+    font-size: 40px;
+}
+h2 {
+    font-size: 36px;
+}
+h3 {
+    font-size: 32px;
+}
+h4 {
+    font-size: 26px;
+}
+h5 {
+    font-size: 22px;
+}
+h6 {
+    font-size: 17px;
+}
+
+.button, button, input[type='submit'] {
+    display: inline-block;
+    padding: 6px 20px;
+    background-color: $color-active;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+        background-color: $color-active-over;
+    }
+}

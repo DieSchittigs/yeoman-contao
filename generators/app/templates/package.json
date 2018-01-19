@@ -1,0 +1,15 @@
+{
+    "main": "web/app.php",
+    "scripts": {
+        "dev": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "sync": "node_modules/.bin/remote-sync-ds",
+        "deploy": "yarn production && node_modules/.bin/dploy live && node_modules/.bin/dploy full",
+        "dploy": "yarn dploy",
+        "watchsync": "yarn sync | yarn watch",
+        "syncwatch": "yarn watchsync"
+    }
+}

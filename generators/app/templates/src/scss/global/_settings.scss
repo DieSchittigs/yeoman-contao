@@ -1,0 +1,25 @@
+// Colors
+$color-text: black;
+$color-active: blue; // Primary color for links, buttons, etc.
+$color-active-over: darken(blue, 10);
+$color-support: yellow; // Secondary color
+$color-support-over: darken(yellow, 10);
+$color-background: lightgrey;
+$color-lines: darkgrey;
+
+
+// Fonts
+$font-family-text: 'Comic Sans' Verdana sans-serif;
+$font-family-headline: 'Comic Sans' Verdana sans-serif;
+// ... define all fonts
+
+$font-weight-normal: 500;
+$font-weight-bold: 700;
+
+
+// Content width setting
+%contentwidth {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+}

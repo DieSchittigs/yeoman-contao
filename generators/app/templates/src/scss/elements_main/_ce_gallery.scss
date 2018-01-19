@@ -1,0 +1,8 @@
+main .ce_gallery {
+    ul {
+        @extend .flex-wrap;
+        li {
+            @extend .w33;
+        }
+    }
+}

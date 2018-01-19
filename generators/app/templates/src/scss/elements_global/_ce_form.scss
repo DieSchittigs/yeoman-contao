@@ -1,0 +1,32 @@
+.ce_form {
+
+    label {
+
+    }
+
+    input[type='text'], input[type='password'], input[type='number'], input[type='date'], input[type='email'], input[type='tel'], input[type='search'], select, textarea {
+        font-family: $font-family-text;
+        color: $color-text;
+        display: block;
+        width: 100%;
+
+        &:focus {
+
+        }
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .formbody {
+        @extend .flex-wrap;
+
+        .widget {
+            @extend .w50;
+        }
+
+    }
+
+
+}

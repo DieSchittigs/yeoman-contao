@@ -1,0 +1,29 @@
+live:
+    scheme: <%= live_ftp_scheme %>
+    host: <%= live_ftp_host %>
+    port: <%= live_ftp_port %>
+    user: <%= live_ftp_user %>
+    pass: <%= live_ftp_pass %>
+    check: true
+    exclude: ["dploy.yaml","*.sublime-*","sftp-conf*",".DS_Store",".remote-sync.json","package.json","composer.*","webpack.*","/src/**", ".git*"]
+    include:
+        "files/theme_<%= theme %>/**" : "files/theme_<%= theme %>/"
+    path:
+        local: /
+        remote: <%= live_ftp_path_remote %>
+
+full:
+    scheme: <%= live_ftp_scheme %>
+    host: <%= live_ftp_host %>
+    port: <%= live_ftp_port %>
+    user: <%= live_ftp_user %>
+    pass: <%= live_ftp_pass %>
+    check: true
+    exclude: ["/**"]
+    include:
+        "vendor/**" : "vendor/"
+        "system/**" : "system/"
+        "assets/**" : "assets/"
+    path:
+        local: /
+        remote: <%= live_ftp_path_remote %>
