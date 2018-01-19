@@ -1,11 +1,1 @@
-*.sublime-workspace
-.phpintel
-.DS_Store
-localconfig.php
 /node_modules
-/vendor
-/assets
-/var
-/files/theme_**
-mix-manifest.json
-.yo*

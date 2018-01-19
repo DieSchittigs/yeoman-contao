@@ -1,6 +1,6 @@
 {
   "name": "@dieschittigs/generator-contao",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Generator for Contao 4.+ with SCSS and ES6 via WebPack",
   "homepage": "https://github.com/dieschittigs/yeoman-contao#readme",
   "author": "Die Schittigs <tobias@dieschittigs.de> (https://www.dieschittigs.de)",
