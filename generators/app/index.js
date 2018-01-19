@@ -172,6 +172,9 @@ module.exports = class extends Generator {
         this.config.save();
         this.installNodePackages();
         this.installComposerPackages();
+    }
+
+    end(){
         if(this.props.preview_ftp_hostname){
             this.spawnCommand('yarn', ['watchsync']);
         } else {
