@@ -1,4 +1,4 @@
-live:
+<% if(installDploy){ %>live:
     scheme: <%= live_ftp_scheme %>
     host: <%= live_ftp_host %>
     port: <%= live_ftp_port %>
@@ -27,3 +27,4 @@ full:
     path:
         local: /
         remote: <%= live_ftp_path_remote %>
+<% } %>

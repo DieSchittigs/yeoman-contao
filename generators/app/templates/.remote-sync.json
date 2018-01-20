@@ -1,4 +1,4 @@
-{
+<% if(installRemoteSync){ %>{
     "transport": "<%= preview_ftp_transport %>",
     "uploadOnSave": true,
     "useAtomicWrites": true,
@@ -21,3 +21,4 @@
         "/files/**"
     ]
 }
+<% } %>
