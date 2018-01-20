@@ -1,4 +1,4 @@
-# generator-contao [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-contao [![NPM version][npm-image]][npm-url]
 > Generator for Contao 4.4+ with SCSS and ES6 via WebPack
 
 ## Installation
@@ -27,11 +27,5 @@ yo @dieschittigs/contao
 ISC © [Die Schittigs](https://www.dieschittigs.de)
 
 
-[npm-image]: https://badge.fury.io/js/generator-contao.svg
-[npm-url]: https://npmjs.org/package/generator-contao
-[travis-image]: https://travis-ci.org/dieschittigs/generator-contao.svg?branch=master
-[travis-url]: https://travis-ci.org/dieschittigs/generator-contao
-[daviddm-image]: https://david-dm.org/dieschittigs/generator-contao.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/dieschittigs/generator-contao
-[coveralls-image]: https://coveralls.io/repos/dieschittigs/generator-contao/badge.svg
-[coveralls-url]: https://coveralls.io/r/dieschittigs/generator-contao
+[npm-image]: https://badge.fury.io/js/%40dieschittigs%2Fgenerator-contao.svg
+[npm-url]: https://npmjs.org/package/@dieschittigs/generator-contao
