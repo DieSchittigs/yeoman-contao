@@ -8,6 +8,7 @@ localconfig.php
 /var
 /system
 /files/theme_**
-/web
+/web/app.php
+/web/app_dev.php
 mix-manifest.json
 .yo*

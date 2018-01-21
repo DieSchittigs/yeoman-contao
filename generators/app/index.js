@@ -195,7 +195,7 @@ module.exports = class extends Generator {
                 'templates/templates_'.concat(this.props.theme).concat('/.gitkeep')
             )
         );
-        this.fs.copyTpl(this.templatePath('_web/**'), this.destinationPath('web'));
+        this.fs.copyTpl(this.templatePath('web/**'), this.destinationPath('web'));
     }
     
     _installNodePackages() {
