@@ -6,6 +6,7 @@
 First, install [Yeoman](http://yeoman.io) and generator-contao using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
+npm i -g yo
 npm i -g @dieschittigs/generator-contao
 ```
 
