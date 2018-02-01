@@ -17,5 +17,7 @@ fi
 
 php composer-setup.php --quiet
 RESULT=$?
+sudo mv composer.phar /usr/local/bin/composer
 rm composer-setup.php
+hash -r
 exit $RESULT
