@@ -17,10 +17,6 @@ module.exports = class extends Generator {
         );
         
         const options = {
-            installLatestNode: 'Install Node.js 8.x via apt',
-            installLatestPhp: 'Install PHP 7.2 via apt',
-            installYarn: 'Install Yarn package manager via apt',
-            installComposer: 'Install Composer package manager',
             installLocalDevServer: 'Install local development server (PHP 7.1+ required)',
             installComposerLocal: 'Install composer packages locally',
             installRemoteSync: 'Use Remote Sync, to upload code automatically',
@@ -51,23 +47,6 @@ module.exports = class extends Generator {
                 message: 'Setup',
                 name: 'config',
                 choices: [
-                    new inquirer.Separator(' = Prerequisites (Ubuntu only) = '),
-                    {
-                        name: options.installLatestNode,
-                        checked: false
-                    },
-                    {
-                        name: options.installYarn,
-                        checked: false
-                    },
-                    {
-                        name: options.installLatestPhp,
-                        checked: false
-                    },
-                    {
-                        name: options.installComposer,
-                        checked: false
-                    },
                     new inquirer.Separator(' = Local Development = '),
                     {
                         name: options.installLocalDevServer,
@@ -177,8 +156,7 @@ module.exports = class extends Generator {
                     }
                 });
             }
-            done();
-        });
+        }).then(done);
     }
     
     writing() {
@@ -195,6 +173,7 @@ module.exports = class extends Generator {
                 'templates/templates_'.concat(this.props.theme).concat('/.gitkeep')
             )
         );
+        this.fs.copy(this.templatePath('gitignore/_gitignore'), this.destinationPath('.gitignore'));
         this.fs.copyTpl(this.templatePath('web/**'), this.destinationPath('web'));
     }
     
@@ -206,6 +185,7 @@ module.exports = class extends Generator {
             'babel-preset-react',
             'babel-preset-stage-0',
             'cross-env',
+            'stmux',
             'laravel-mix',
             'webpack',
             'lodash',
@@ -215,46 +195,23 @@ module.exports = class extends Generator {
         if (this.props.installDploy) packages.push('dploy');
         if (this.props.installLocalDevServer)
         packages.push('@dieschittigs/contao-dev-server');
-        this.yarnInstall(packages, { dev: true });
+        this.npmInstall(packages, { dev: true });
     }
     
     _installComposerLocal() {
         if (!this.props.installComposerLocal) return;
-        this.spawnCommandSync('composer', ['update']);
-    }
-    
-    _installLatestPhp() {
-        if (!this.props.installLatestPhp) return;
-        this.spawnCommandSync('sh', [__dirname + '/scripts/install_php.sh']);
-    }
-    
-    _installComposer() {
-        if (!this.props.installComposer) return;
         this.spawnCommandSync('sh', [__dirname + '/scripts/install_composer.sh']);
-    }
-    
-    _installLatestNode() {
-        if (!this.props.installLatestNode) return;
-        this.spawnCommandSync('sh', [__dirname + '/scripts/install_node.sh']);
-    }
-
-    _installYarn() {
-        if (!this.props.installYarn) return;
-        this.spawnCommandSync('sh', [__dirname + '/scripts/install_yarn.sh']);
+        this.spawnCommandSync('php', ['composer.phar', 'update']);
     }
     
     install() {
-        this._installLatestNode();
-        this._installYarn();
         this._installNodePackages();
-        this._installLatestPhp();
-        this._installComposer();
         this._installComposerLocal();
     }
     
     end() {
         if (!this.props.installRemoteSync) this.fs.delete('.remote-sync.json');
         if (!this.props.installDploy) this.fs.delete('dploy.yaml');
-        console.log('\n\n    All done! Enter `yarn run` to see which tasks are available.\n\n');
+        console.log('\n\n    All done! Enter `npm run` to see which tasks are available.\n\n');
     }
 };
