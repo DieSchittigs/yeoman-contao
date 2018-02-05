@@ -1,0 +1,24 @@
+main .ce_downloads {
+    margin: $ce-margin 0;
+
+    ul {
+        border-top: 1px solid $color-lines;
+    }
+    a {
+        display: block;
+        border-bottom: 1px solid $color-lines;
+        padding: 0.5em;
+        text-decoration: none;
+        font-weight: $font-weight-bold;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $color-boxes;
+        }
+
+        .size {
+            font-weight: $font-weight-normal;
+            font-size: 80%;
+        }
+    }
+}

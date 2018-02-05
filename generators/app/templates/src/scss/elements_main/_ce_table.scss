@@ -1,0 +1,27 @@
+main .ce_table {
+
+    margin: $ce-margin 0;
+
+    table {
+        width: 100%;
+        border-top: 1px solid $color-lines;
+    }
+
+    tr {
+        border-bottom: 1px solid $color-lines;
+        transition: background-color 0.2s ease-in-out;
+
+        th, td {
+            padding: 0.5em;
+        }
+
+        th {
+            font-weight: $font-weight-bold;
+            text-align: left;
+        }
+
+        &:hover {
+            background-color: $color-boxes;
+        }
+    }
+}

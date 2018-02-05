@@ -1,0 +1,17 @@
+main .ce_list {
+    margin: $ce-margin 0;
+    ul {
+        list-style: initial;
+        list-style-position: outside;
+        padding-left: 30px;
+    }
+    ol {
+        list-style: decimal;
+        list-style-position: outside;
+        padding-left: 30px;
+    }
+
+    li {
+        margin: 0.5em 0;
+    }
+}

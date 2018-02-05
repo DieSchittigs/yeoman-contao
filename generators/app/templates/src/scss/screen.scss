@@ -6,8 +6,8 @@
 @import '/global/helpers';
 
 // Custom fonts
-// Add FontAwesome? yarn add font-awesome
-// @import '~font-awesome/scss/font-awesome'
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
 
 // Global elements
 @import '/elements_global/ce_form';
@@ -23,6 +23,11 @@
 @import '/elements_main/ce_hyperlink';
 @import '/elements_main/ce_image';
 @import '/elements_main/ce_gallery';
+@import '/elements_main/ce_list';
+@import '/elements_main/ce_table';
+@import '/elements_main/ce_download';
+@import '/elements_main/ce_downloads';
+@import '/elements_main/ce_player';
 
 // Side column elements
 
