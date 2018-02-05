@@ -1,20 +1,24 @@
 // Colors
-$color-text: black;
-$color-active: blue; // Primary color for links, buttons, etc.
-$color-active-over: darken(blue, 10);
-$color-support: yellow; // Secondary color
-$color-support-over: darken(yellow, 10);
-$color-background: lightgrey;
-$color-lines: darkgrey;
+$color-text: #0e1012;
+$color-active: #1863df; // Primary color for links, buttons, etc.
+$color-active-over: darken($color-active, 20);
+$color-support: #df8d18; // Secondary color
+$color-support-over: darken($color-support, 20);
+$color-background: #efeff0;
+$color-lines: #d7d7d8;
+$color-boxes: #eaeaeb;
 
 
 // Fonts
-$font-family-text: 'Comic Sans' Verdana sans-serif;
-$font-family-headline: 'Comic Sans' Verdana sans-serif;
+$font-family-text: Raleway, Verdana, sans-serif;
+$font-family-headline: Raleway, Verdana, sans-serif;
 // ... define all fonts
 
-$font-weight-normal: 500;
+$font-weight-normal: 400;
 $font-weight-bold: 700;
+
+// Content element default vertical margin
+$ce-margin: 2em;
 
 
 // Content width setting

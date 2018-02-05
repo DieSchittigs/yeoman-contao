@@ -1,7 +1,7 @@
 body {
     font-family: $font-family-text;
     font-weight: $font-weight-normal;
-    line-height: 1.5;
+    line-height: 1.4;
     color: $color-text;
     font-size: 17px;
 }
@@ -16,6 +16,7 @@ strong, b {
 
 a {
     color: $color-active;
+    transition: color 0.2s ease-in-out;
     &:hover {
         color: $color-active-over;
     }
@@ -24,11 +25,12 @@ a {
 h1, h2, h3, h4, h5, h6 {
     font-family: $font-family-headline;
     font-weight: $font-weight-bold;
-    margin: 0.5em 0 1em 0;
+    margin: 1em 0 0.5em 0;
 }
 
 h1 {
     font-size: 40px;
+    margin-top: 0;
 }
 h2 {
     font-size: 36px;
@@ -52,6 +54,7 @@ h6 {
     background-color: $color-active;
     color: white;
     text-decoration: none;
+    border: 0;
     transition: background-color 0.2s ease-in-out;
     &:hover {
         background-color: $color-active-over;

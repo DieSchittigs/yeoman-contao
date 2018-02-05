@@ -1,8 +1,48 @@
 main .ce_gallery {
+    margin: $ce-margin 0;
     ul {
         @extend .flex-wrap;
+
         li {
-            @extend .w33;
+            margin-bottom: 0.5em;
         }
+
+        // Max. 4 columns
+        li {
+            width: 24%;
+            @media (max-width: 800px) {
+                width: 49%;
+            }
+            @media (max-width: 650px) {
+                width: 100%;
+            }
+        }
+        &.cols_3 li {
+            width: 32.333%;
+            @media (max-width: 650px) {
+                width: 100%;
+            }
+        }
+        &.cols_2 li {
+            width: 49%;
+            @media (max-width: 650px) {
+                width: 100%;
+            }
+        }
+        &.cols_1 li {
+            width: 100%;
+        }
+
+
+        a {
+            display: block;
+            transform: scale(1);
+            transition: transform 0.2s ease-in-out;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+
     }
 }

@@ -1,7 +1,8 @@
 .ce_form {
 
     label {
-
+        font-size: 80%;
+        margin-bottom: 6px;
     }
 
     input[type='text'], input[type='password'], input[type='number'], input[type='date'], input[type='email'], input[type='tel'], input[type='search'], select, textarea {
@@ -9,9 +10,12 @@
         color: $color-text;
         display: block;
         width: 100%;
+        border: 1px solid $color-lines;
+        padding: 6px 10px;
+        transition: background-color 0.2s ease-in-out;
 
         &:focus {
-
+            background-color: $color-boxes;
         }
     }
 
@@ -23,7 +27,7 @@
         @extend .flex-wrap;
 
         .widget {
-            @extend .w50;
+            margin-bottom: 0.6em;
         }
 
     }

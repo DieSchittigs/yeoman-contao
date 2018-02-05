@@ -1,7 +1,10 @@
-main .ce_hyperlink {
+main .ce_download {
     margin: $ce-margin 0;
     text-align: center;
     a {
         @extend .button;
+        .size {
+            font-size: 80%;
+        }
     }
 }
