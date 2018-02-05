@@ -1,9 +1,29 @@
-# generator-contao [![NPM version][npm-image]][npm-url]
-> Generator for Contao 4.4+ with SCSS and ES6 via WebPack
+# Generator Contao [![NPM version][npm-image]][npm-url]
+> Yeoman generator for Contao 4.4+ with SCSS and ES6 via WebPack
+
+## Features
+
+ * SCSS compilation via WebPack
+ * ES6 support via WebPack
+ * Basic theme scaffold included
+ * [Integrated local development server](https://github.com/DieSchittigs/contao-dev-server)
+
+## Screenshots
+
+
+
+## Prerequisites
+
+ * Mac OS or Linux*
+ * PHP 7.1+
+ * Node.js 8.9+
+ * MySQL (optional)
+
+* Windows support can be achieved through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-contao using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-contao using [npm](https://www.npmjs.com/).
 
 ```bash
 npm i -g yo
@@ -16,12 +36,14 @@ Then generate your new project:
 yo @dieschittigs/contao
 ```
 
-## Getting To Know Yeoman
+## Usage
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+This generator provides tasks for compilation via WebPack, source-file watching, syncing, deployment and the local dev server.  
+See a list of all tasks by entering:
+
+```bash
+npm run
+```
 
 ## License
 

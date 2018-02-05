@@ -173,6 +173,12 @@ module.exports = class extends Generator {
                 'templates/templates_'.concat(this.props.theme).concat('/.gitkeep')
             )
         );
+        this.fs.copy(
+            this.templatePath('files/theme_/.public'),
+            this.destinationPath(
+                'files/theme_'.concat(this.props.theme).concat('/.public')
+            )
+        );
         this.fs.copy(this.templatePath('gitignore/_gitignore'), this.destinationPath('.gitignore'));
         this.fs.copyTpl(this.templatePath('web/**'), this.destinationPath('web'));
     }
@@ -200,7 +206,10 @@ module.exports = class extends Generator {
     
     _installComposerLocal() {
         if (!this.props.installComposerLocal) return;
-        this.spawnCommandSync('sh', [__dirname + '/scripts/install_composer.sh']);
+        this.spawnCommandSync('php', ['-r', "\"copy('https://getcomposer.org/installer', 'composer-setup.php');\""]);
+        this.spawnCommandSync('php', ['-r',"\"if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;\""]);
+        this.spawnCommandSync('php', ['composer-setup.php']);
+        this.spawnCommandSync('php', ['-r',"\"unlink('composer-setup.php');\""]);
         this.spawnCommandSync('php', ['composer.phar', 'update']);
     }
     
