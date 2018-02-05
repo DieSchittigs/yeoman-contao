@@ -1,18 +1,19 @@
 <% if(installRemoteSync){ %>{
-    "transport": "<%= preview_ftp_transport %>",
+    "transport": "<%= preview_ftp_scheme %>",
     "uploadOnSave": true,
     "useAtomicWrites": true,
     "deleteLocal": false,
-    "hostname": "<%= preview_ftp_hostname %>",
-    "target": "<%= preview_ftp_target %>",
+    "hostname": "<%= preview_ftp_host %>",
+    "port": "<%= preview_ftp_port %>",
+    "target": "<%= preview_ftp_path_remote %>",
     "ignore": [
         ".remote-sync.json",
         "dploy.yaml",
         ".git/**",
         "/src/**"
     ],
-    "username": "<%= preview_ftp_username %>",
-    "password": "<%= preview_ftp_password %>",
+    "username": "<%= preview_ftp_user %>",
+    "password": "<%= preview_ftp_pass %>",
     "watch": [
         "/files/theme_<%= theme %>/js/script.js",
         "/files/theme_<%= theme %>/css/style.css"

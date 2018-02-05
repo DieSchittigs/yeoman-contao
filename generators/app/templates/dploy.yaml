@@ -12,7 +12,7 @@
         local: /
         remote: <%= live_ftp_path_remote %>
 
-vendor:
+live_vendor:
     scheme: <%= live_ftp_scheme %>
     host: <%= live_ftp_host %>
     port: <%= live_ftp_port %>
@@ -25,18 +25,60 @@ vendor:
         local: /
         remote: <%= live_ftp_path_remote %>
 
-other:
+live_other:
     scheme: <%= live_ftp_scheme %>
     host: <%= live_ftp_host %>
     port: <%= live_ftp_port %>
     user: <%= live_ftp_user %>
     pass: <%= live_ftp_pass %>
     check: true
-    exclude: ["/system/logs/**", 'system/cache/**']
+    exclude: ["/system/logs/**", "system/cache/**"]
     include:
         "system/**" : "system/"
         "assets/**" : "assets/"
     path:
         local: /
         remote: <%= live_ftp_path_remote %>
+<% } %>
+<% if(previewInDploy){ %>preview:
+    scheme: <%= preview_ftp_scheme %>
+    host: <%= preview_ftp_host %>
+    port: <%= preview_ftp_port %>
+    user: <%= preview_ftp_user %>
+    pass: <%= preview_ftp_pass %>
+    check: true
+    exclude: ["dploy.yaml","*.sublime-*","sftp-conf*",".DS_Store",".remote-sync.json","package.json","composer.*","webpack.*","/src/**", ".git*"]
+    include:
+        "files/theme_<%= theme %>/**" : "files/theme_<%= theme %>/"
+    path:
+        local: /
+        remote: <%= preview_ftp_path_remote %>
+
+preview_vendor:
+    scheme: <%= preview_ftp_scheme %>
+    host: <%= preview_ftp_host %>
+    port: <%= preview_ftp_port %>
+    user: <%= preview_ftp_user %>
+    pass: <%= preview_ftp_pass %>
+    check: true
+    include:
+        "vendor/**" : "vendor/"
+    path:
+        local: /
+        remote: <%= preview_ftp_path_remote %>
+
+preview_other:
+    scheme: <%= preview_ftp_scheme %>
+    host: <%= preview_ftp_host %>
+    port: <%= preview_ftp_port %>
+    user: <%= preview_ftp_user %>
+    pass: <%= preview_ftp_pass %>
+    check: true
+    exclude: ["/system/logs/**", "system/cache/**"]
+    include:
+        "system/**" : "system/"
+        "assets/**" : "assets/"
+    path:
+        local: /
+        remote: <%= preview_ftp_path_remote %>
 <% } %>

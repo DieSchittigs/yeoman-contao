@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const path = require('path');
 var inquirer = require('inquirer');
 
 function getKeyByValue(object, value) {
@@ -23,11 +24,13 @@ module.exports = class extends Generator {
             installDploy: 'Use Dploy for easy deployment to a live system'
         };
         
-        this.props = {};
+        this.props = {
+            previewInDploy: false
+        };
         Object.keys(options).forEach(key => {
             this.props[key] = false;
         });
-        
+
         inquirer
         .prompt([
             {
@@ -79,33 +82,39 @@ module.exports = class extends Generator {
                 questions = questions.concat([
                     {
                         type: 'input',
-                        name: 'preview_ftp_transport',
+                        name: 'preview_ftp_scheme',
                         message: 'Preview server protocol? (ftp or sftp)',
                         default: 'ftp'
                     },
                     {
                         type: 'input',
-                        name: 'preview_ftp_hostname',
+                        name: 'preview_ftp_host',
                         message: 'Preview server hostname?',
-                        default: ''
+                        default: 'ftp.example.org'
                     },
                     {
                         type: 'input',
-                        name: 'preview_ftp_target',
+                        name: 'preview_ftp_port',
+                        message: 'Preview server port?',
+                        default: '21'
+                    },
+                    {
+                        type: 'input',
+                        name: 'preview_ftp_path_remote',
                         message: 'Preview server target path?',
                         default: '/'
                     },
                     {
                         type: 'input',
-                        name: 'preview_ftp_username',
+                        name: 'preview_ftp_user',
                         message: 'Preview server username?',
-                        default: ''
+                        default: 'ftpuser'
                     },
                     {
                         type: 'input',
-                        name: 'preview_ftp_password',
+                        name: 'preview_ftp_pass',
                         message: 'Preview server password?',
-                        default: ''
+                        default: 'ftppass'
                     }
                 ]);
             }
@@ -121,7 +130,7 @@ module.exports = class extends Generator {
                         type: 'input',
                         name: 'live_ftp_host',
                         message: 'Live server host?',
-                        default: ''
+                        default: 'ftp.example.org'
                     },
                     {
                         type: 'input',
@@ -139,15 +148,23 @@ module.exports = class extends Generator {
                         type: 'input',
                         name: 'live_ftp_user',
                         message: 'Live server username?',
-                        default: ''
+                        default: 'ftpuser'
                     },
                     {
                         type: 'input',
                         name: 'live_ftp_pass',
                         message: 'Live server password?',
-                        default: ''
+                        default: 'ftppass'
                     }
                 ]);
+            }
+            if (this.props.installRemoteSync && this.props.installDploy) {
+                questions.push({
+                    type: 'confirm',
+                    name: 'previewInDploy',
+                    message: 'Shell we add the preview server as an additional target for Dploy?',
+                    default: true
+                });
             }
             if (questions.length > 0) {
                 return inquirer.prompt(questions).then(answers => {
@@ -206,11 +223,8 @@ module.exports = class extends Generator {
     
     _installComposerLocal() {
         if (!this.props.installComposerLocal) return;
-        this.spawnCommandSync('php', ['-r', "\"copy('https://getcomposer.org/installer', 'composer-setup.php');\""]);
-        this.spawnCommandSync('php', ['-r',"\"if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;\""]);
-        this.spawnCommandSync('php', ['composer-setup.php']);
-        this.spawnCommandSync('php', ['-r',"\"unlink('composer-setup.php');\""]);
-        this.spawnCommandSync('php', ['composer.phar', 'update']);
+        this.spawnCommandSync('php', [path.join(__dirname, 'scripts/install_composer.php')]);
+        this.spawnCommandSync('php', ['composer.phar', 'install']);
     }
     
     install() {

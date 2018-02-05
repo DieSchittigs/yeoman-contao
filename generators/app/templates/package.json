@@ -1,21 +1,27 @@
 {
     "main": "web/app.php",
     "scripts": {
-<% if(installRemoteSync){ %>
-        "sync": "node_modules/.bin/remote-sync-ds",
-        "watch:sync": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run watch' .. 'npm run sync' ]",
-        "sync:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run sync' .. 'npm run watch' ]",
-<% } %>
 <% if(installLocalDevServer){ %>
         "serve": "node_modules/.bin/contao-dev-server",
         "serve:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run serve' .. 'npm run watch' ]",
         "watch:serve": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run watch' .. 'npm run serve' ]",
 <% } %>
+<% if(installRemoteSync){ %>
+        "sync": "node_modules/.bin/remote-sync-ds",
+        "watch:sync": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run watch' .. 'npm run sync' ]",
+        "sync:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run sync' .. 'npm run watch' ]",
+<% } %>
 <% if(installDploy){ %>
-        "deploy": "npm run production && node_modules/.bin/dploy live",
-        "deploy:vendor": "php composer.phar update && node_modules/.bin/dploy vendor",
-        "deploy:other": "node_modules/.bin/dploy other",
-        "deploy:all": "npm run deploy && npm run deploy:vendor && npm run deploy:other",
+        "deploy:live": "npm run production && node_modules/.bin/dploy live",
+        "deploy:live:vendor": "php composer.phar update && node_modules/.bin/dploy live_vendor",
+        "deploy:live:other": "node_modules/.bin/dploy live_other",
+        "deploy:live:all": "npm run deploy:live && npm run deploy:live:vendor && npm run deploy:live:other",
+<% } %>
+<% if(previewInDploy){ %>
+        "deploy:preview": "npm run production && node_modules/.bin/dploy preview",
+        "deploy:preview:vendor": "php composer.phar update && node_modules/.bin/dploy preview_vendor",
+        "deploy:preview:other": "node_modules/.bin/dploy preview_other",
+        "deploy:preview:all": "npm run deploy:preview && npm run deploy:preview:vendor && npm run deploy:preview:other",
 <% } %>
         "dev": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
