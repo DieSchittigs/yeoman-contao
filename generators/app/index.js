@@ -218,7 +218,7 @@ module.exports = class extends Generator {
         if (this.props.installDploy) packages.push('dploy');
         if (this.props.installLocalDevServer)
         packages.push('@dieschittigs/contao-dev-server');
-        this.npmInstall(packages, { dev: true });
+        this.npmInstall(packages, { 'save-dev': true });
     }
     
     _installComposerLocal() {
