@@ -3,7 +3,8 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
+const pjson = require(path.join(__dirname, '../../package.json'));
 
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
@@ -14,7 +15,7 @@ module.exports = class extends Generator {
         var done = this.async();
         // Have Yeoman greet the user.
         this.log(
-            yosay('Welcome to the Die Schittigs ' + chalk.red('Contao') + ' generator!')
+            yosay('Welcome to the Die Schittigs ' + chalk.red('Contao') + ' generator v'+ pjson.version +'!')
         );
         
         const options = {
@@ -209,8 +210,15 @@ module.exports = class extends Generator {
             'babel-preset-stage-0',
             'cross-env',
             'stmux',
-            'laravel-mix',
+            'node-sass',
             'webpack',
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+            'babel-loader',
+            'babel-core',
+            'copy-webpack-plugin',
+            'extract-text-webpack-plugin',
             'lodash',
             'jquery'
         ];
