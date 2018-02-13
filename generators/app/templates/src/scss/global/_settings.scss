@@ -5,9 +5,8 @@ $color-active-over: darken($color-active, 20);
 $color-support: #df8d18; // Secondary color
 $color-support-over: darken($color-support, 20);
 $color-background: #efeff0;
-$color-lines: #d7d7d8;
+$color-lines: hsl(240, 1%, 85%);
 $color-boxes: #eaeaeb;
-
 
 // Fonts
 $font-family-text: Raleway, Verdana, sans-serif;
@@ -20,10 +19,12 @@ $font-weight-bold: 700;
 // Content element default vertical margin
 $ce-margin: 2em;
 
-
 // Content width setting
 %contentwidth {
     width: 92%;
     max-width: 1200px;
     margin: 0 auto;
 }
+
+// Mobile Menu Settings
+$show-mobile-menu: 720px;

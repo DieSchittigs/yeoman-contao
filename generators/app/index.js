@@ -42,8 +42,14 @@ module.exports = class extends Generator {
             },
             {
                 type: 'input',
+                name: 'projectName',
+                message: 'What is the sites name?',
+                default: 'My Awesome Site'
+            },
+            {
+                type: 'input',
                 name: 'theme',
-                message: 'What should your theme be suffixed?',
+                message: 'What should your theme be suffixed with?',
                 default: new Date().getFullYear()
             },
             {
@@ -75,6 +81,7 @@ module.exports = class extends Generator {
         .then(answers => {
             this.props.contaoVersion = answers.contaoVersion;
             this.props.theme = answers.theme;
+            this.props.projectName = answers.projectName;
             answers.config.forEach(opt => {
                 this.props[getKeyByValue(options, opt)] = true;
             });
@@ -180,7 +187,7 @@ module.exports = class extends Generator {
     writing() {
         this.fs.copyTpl(this.templatePath('.*'), this.destinationPath(), this.props);
         this.fs.copyTpl(this.templatePath('*'), this.destinationPath(), this.props);
-        this.fs.copy(this.templatePath('app/**'), this.destinationPath('app'));
+        this.fs.copy(this.templatePath('app/.gitkeep'), this.destinationPath('app/.gitkeep'));
         this.fs.copy(
             this.templatePath('src/**'),
             this.destinationPath('src/'.concat(this.props.theme))
@@ -197,8 +204,18 @@ module.exports = class extends Generator {
                 'files/theme_'.concat(this.props.theme).concat('/.public')
             )
         );
+        this.fs.copyTpl(
+            this.templatePath('templates/template.sql'),
+            this.destinationPath('templates/template.sql'),
+            this.props
+        );
+        this.fs.copyTpl(
+            this.templatePath('system/**'),
+            this.destinationPath('system'),
+            this.props
+        );
         this.fs.copy(this.templatePath('gitignore/_gitignore'), this.destinationPath('.gitignore'));
-        this.fs.copyTpl(this.templatePath('web/**'), this.destinationPath('web'));
+        this.fs.copyTpl(this.templatePath('web/**'), this.destinationPath('web'), this.props);
     }
     
     _installNodePackages() {
