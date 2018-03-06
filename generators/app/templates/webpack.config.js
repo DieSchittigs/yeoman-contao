@@ -11,7 +11,16 @@ const config = {
         publicPath: '/files/theme_<%= theme %>'
     },
     module: {
-        rules: []
+        rules: [
+            { test: /\.(png|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/fonts'), loader: {
+                loader: 'file-loader',
+                options: {outputPath: 'files/fonts', publicPath: '../fonts/'}
+            } },
+            { test: /\.(png|jpg|jpeg|gif|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/img'), loader: {
+                loader: 'file-loader',
+                options: {outputPath: 'files/img', publicPath: '../img/'}
+            } }
+        ]
     },
     stats: {
         colors: true
