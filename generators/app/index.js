@@ -193,6 +193,10 @@ module.exports = class extends Generator {
             this.destinationPath('src/'.concat(this.props.theme))
         );
         this.fs.copy(
+            this.templatePath('src/*/.*'),
+            this.destinationPath('src/'.concat(this.props.theme))
+        );
+        this.fs.copy(
             this.templatePath('templates/templates_/.gitkeep'),
             this.destinationPath(
                 'templates/templates_'.concat(this.props.theme).concat('/.gitkeep')

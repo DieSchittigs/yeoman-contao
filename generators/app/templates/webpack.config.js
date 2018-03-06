@@ -14,11 +14,11 @@ const config = {
         rules: [
             { test: /\.(png|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/fonts'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'files/fonts', publicPath: '../fonts/'}
+                options: {outputPath: 'fonts', publicPath: '../fonts/'}
             } },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/img'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'files/img', publicPath: '../img/'}
+                options: {outputPath: 'img', publicPath: '../img/'}
             } }
         ]
     },
@@ -47,7 +47,7 @@ if(production){
     config.devtool = undefined;
 }
 
-loaderOptions = production ? {
+const loaderOptions = production ? {
     sourceMap: false,
     minimize: true
 } : {
@@ -55,35 +55,48 @@ loaderOptions = production ? {
     minimize: false
 };
 
-const jsConfig = _.cloneDeep(config);
-jsConfig.entry = './src/<%= theme %>/js/script.js';
-jsConfig.output.filename = 'js/script.js';
-jsConfig.module.rules.push({
-    test: /\.js$/,
-    exclude: /node_modules/,
-    use: [
-        'babel-loader'
-    ]
-},{
-    test: /\.css$/,
-    use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{ loader: 'css-loader', options: loaderOptions }]
-    })
-});
+function createConfig(entry, outputFilename, rules){
+    const _config = _.cloneDeep(config);
+    _config.entry = path.resolve('./src/<%= theme %>/', entry);
+    _config.output.filename = outputFilename;
+    if(!Array.isArray(rules)) rules = [rules];
+    _config.module.rules = _config.module.rules.concat(rules);
+    return _config;
+}
 
-const cssConfig = _.cloneDeep(config);
-cssConfig.entry = './src/<%= theme %>/scss/screen.scss';
-cssConfig.output.filename = 'css/screen.css';
-cssConfig.module.rules.push({
-    test: /\.scss$/,
-    use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-            {loader: 'css-loader', options: loaderOptions},
-            {loader: 'sass-loader', options: loaderOptions}
-        ]
-    })
-});
+const jsConfig = createConfig(
+    'js/script.js',
+    'js/script.js',
+    [
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [
+                'babel-loader'
+            ]
+        },{
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [{ loader: 'css-loader', options: loaderOptions }]
+            })
+        }
+    ]
+);
+
+const cssConfig = createConfig(
+    'scss/screen.scss',
+    'css/screen.css',
+    {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+                {loader: 'css-loader', options: loaderOptions},
+                {loader: 'sass-loader', options: loaderOptions}
+            ]
+        })
+    }
+);
 
 module.exports = [jsConfig, cssConfig];
