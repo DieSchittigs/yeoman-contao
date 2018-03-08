@@ -8,9 +8,9 @@
  * Basic theme scaffold included
  * [Integrated local development server](https://github.com/DieSchittigs/contao-dev-server)
 
-## Screenshots
+## Screencast
 
-
+![](https://i.imgur.com/wvgQ2qg.gif)
 
 ## Prerequisites
 
