@@ -30,8 +30,7 @@ const config = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
-        }),
-        new ExtractTextPlugin('css/screen.css')
+        })
     ],
     devtool: "cheap-module-source-map"
 };
@@ -98,5 +97,6 @@ const cssConfig = createConfig(
         })
     }
 );
+cssConfig.plugins.push(new ExtractTextPlugin('css/screen.css'));
 
 module.exports = [jsConfig, cssConfig];
