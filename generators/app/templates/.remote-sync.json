@@ -5,6 +5,8 @@
     "deleteLocal": false,
     "hostname": "<%= preview_ftp_host %>",
     "port": "<%= preview_ftp_port %>",
+    "username": "<%= preview_ftp_user %>",
+    "password": "<%= preview_ftp_pass %>",
     "target": "<%= preview_ftp_path_remote %>",
     "ignore": [
         ".remote-sync.json",
@@ -12,14 +14,12 @@
         ".git/**",
         "/src/**"
     ],
-    "username": "<%= preview_ftp_user %>",
-    "password": "<%= preview_ftp_pass %>",
     "watch": [
         "/files/theme_<%= theme %>/js/script.js",
         "/files/theme_<%= theme %>/css/style.css"
     ],
     "watch-ds": [
-        "/files/**"
+        "/files/**/*"
     ]
 }
 <% } %>
