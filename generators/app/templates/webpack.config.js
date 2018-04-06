@@ -18,7 +18,7 @@ const config = {
             } },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/img'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'img/', publicPath: '../img/'}
+                options: {outputPath: 'img/', publicPath: '../'}
             } }
         ]
     },
