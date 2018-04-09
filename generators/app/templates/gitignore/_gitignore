@@ -11,4 +11,5 @@ localconfig.php
 /web/app.php
 /web/app_dev.php
 mix-manifest.json
+contao-dev-server-error.log
 .yo*
