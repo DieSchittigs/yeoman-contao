@@ -2,11 +2,11 @@
     "main": "web/app.php",
     "scripts": {
         <% if(installLocalDevServer){ %>"serve": "node_modules/.bin/contao-dev-server",
-        "serve:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run serve' .. 'npm run watch' ]",
-        "watch:serve": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run watch' .. 'npm run serve' ]",<% } %>
+        "serve:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -t 'webpack serve:watch' -- [ 'npm run serve' .. 'npm run watch' ]",
+        "watch:serve": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -t 'webpack watch:serve' -- [ 'npm run watch' .. 'npm run serve' ]",<% } %>
         <% if(installRemoteSync){ %>"sync": "node_modules/.bin/remote-sync-ds",
-        "watch:sync": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run watch' .. 'npm run sync' ]",
-        "sync:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -- [ 'npm run sync' .. 'npm run watch' ]",<% } %>
+        "watch:sync": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -t 'webpack watch:sync' -- [ 'npm run watch' .. 'npm run sync' ]",
+        "sync:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -t 'webpack sync:watch' -- [ 'npm run sync' .. 'npm run watch' ]",<% } %>
         <% if(installDploy){ %>"deploy:live": "npm run production && node_modules/.bin/dploy live",
         "deploy:live:vendor": "php composer.phar update && node_modules/.bin/dploy live_vendor",
         "deploy:live:other": "node_modules/.bin/dploy live_other",
