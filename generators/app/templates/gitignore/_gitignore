@@ -10,6 +10,11 @@ localconfig.php
 /files/theme_**
 /web/app.php
 /web/app_dev.php
+/web/assets
+/web/bundles
+/web/share
+/web/system
+/web/.htaccess
 mix-manifest.json
 contao-dev-server-error.log
 .yo*
