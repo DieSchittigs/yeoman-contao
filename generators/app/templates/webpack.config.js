@@ -12,13 +12,17 @@ const config = {
     },
     module: {
         rules: [
-            { test: /\.(png|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/fonts'), loader: {
+            { test: /\.(png|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'src/2018/fonts'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'fonts', publicPath: '../fonts/'}
+                options: {outputPath: 'fonts/', publicPath: '../'}
             } },
-            { test: /\.(png|jpg|jpeg|gif|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/img'), loader: {
+            { test: /\.(png|jpg|jpeg|gif|svg)$/, include: path.join(__dirname, 'src/2018/img'), loader: {
                 loader: 'file-loader',
                 options: {outputPath: 'img/', publicPath: '../'}
+            } },
+            { test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'node_modules'), loader: {
+                loader: 'file-loader',
+                options: {outputPath: 'lib/', publicPath: '../'}
             } }
         ]
     },
