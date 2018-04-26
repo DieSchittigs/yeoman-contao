@@ -22,6 +22,7 @@
         "dev": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --progress --hide-modules",
         "watch": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --watch --progress --hide-modules",
         "watch-poll": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --watch --watch-poll --progress --hide-modules",
-        "production": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --progress --hide-modules"
+        "production": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --progress --hide-modules",
+        "cacheclear": "vendor/bin/contao-console cache:clear && vendor/bin/contao-console cache:clear --env=dev"
     }
 }
