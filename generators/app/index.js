@@ -20,20 +20,21 @@ module.exports = class extends Generator {
         
         const options = {
             installLocalDevServer: 'Install local development server (PHP 7.1+ required)',
-            installComposerLocal: 'Install composer packages locally',
-            installRemoteSync: 'Use Remote Sync, to upload code automatically',
-            installDploy: 'Use Dploy for easy deployment to a live system'
+            installComposerLocal: 'Install composer packages',
+            installContaoManager: 'Install Contao Manager',
+            installRemoteSync: 'Setup Remote Sync',
+            installDploy: 'Setup Dploy',
+            installPHPloy: 'Setup PHPloy'
         };
         
         this.props = {
-            previewInDploy: false
+            deployToRemoteSync: false
         };
         Object.keys(options).forEach(key => {
             this.props[key] = false;
         });
 
-        inquirer
-        .prompt([
+        inquirer.prompt([
             {
                 type: 'input',
                 name: 'contaoVersion',
@@ -57,7 +58,7 @@ module.exports = class extends Generator {
                 message: 'Setup',
                 name: 'config',
                 choices: [
-                    new inquirer.Separator(' = Local Development = '),
+                    new inquirer.Separator(' = Local development = '),
                     {
                         name: options.installLocalDevServer,
                         checked: true
@@ -66,13 +67,13 @@ module.exports = class extends Generator {
                         name: options.installComposerLocal,
                         checked: true
                     },
-                    new inquirer.Separator(' = Sync and Deployment = '),
                     {
-                        name: options.installRemoteSync,
+                        name: options.installContaoManager,
                         checked: false
                     },
+                    new inquirer.Separator(' = Synchronization = '),
                     {
-                        name: options.installDploy,
+                        name: options.installRemoteSync,
                         checked: false
                     }
                 ]
@@ -85,6 +86,32 @@ module.exports = class extends Generator {
             answers.config.forEach(opt => {
                 this.props[getKeyByValue(options, opt)] = true;
             });
+            return inquirer.prompt([
+                {
+                    type: 'list',
+                    message: 'Local deployment options',
+                    name: 'deployment',
+                    choices: [
+                        {
+                            name: 'None',
+                            checked: true
+                        },
+                        {
+                            name: options.installDploy,
+                            checked: false
+                        },
+                        {
+                            name: options.installPHPloy,
+                            checked: false
+                        }
+                    ]
+                }
+            ]);
+        })
+        .then(answers => {
+            if(answers.deployment != 'None'){
+                this.props[getKeyByValue(options, answers.deployment)] = true;
+            }
             let questions = [];
             if (this.props.installRemoteSync) {
                 questions = questions.concat([
@@ -126,7 +153,7 @@ module.exports = class extends Generator {
                     }
                 ]);
             }
-            if (this.props.installDploy) {
+            if (this.props.installDploy || this.props.installPHPloy) {
                 questions = questions.concat([
                     {
                         type: 'input',
@@ -166,10 +193,10 @@ module.exports = class extends Generator {
                     }
                 ]);
             }
-            if (this.props.installRemoteSync && this.props.installDploy) {
+            if (this.props.installRemoteSync && (this.props.installDploy || this.props.installPHPloy)) {
                 questions.push({
                     type: 'confirm',
-                    name: 'previewInDploy',
+                    name: 'deployToRemoteSync',
                     message: 'Shell we add the preview server as an additional target for Dploy?',
                     default: true
                 });
@@ -185,9 +212,20 @@ module.exports = class extends Generator {
     }
     
     writing() {
-        this.fs.copyTpl(this.templatePath('.*'), this.destinationPath(), this.props);
-        this.fs.copyTpl(this.templatePath('*'), this.destinationPath(), this.props);
-        this.fs.copy(this.templatePath('app/.gitkeep'), this.destinationPath('app/.gitkeep'));
+        this.fs.copyTpl(
+            this.templatePath('.*'),
+            this.destinationPath(),
+            this.props
+        );
+        this.fs.copyTpl(
+            this.templatePath('*'),
+            this.destinationPath(),
+            this.props
+        );
+        this.fs.copy(
+            this.templatePath('app/.gitkeep'),
+            this.destinationPath('app/.gitkeep')
+        );
         this.fs.copy(
             this.templatePath('src/**'),
             this.destinationPath('src/'.concat(this.props.theme))
@@ -218,8 +256,36 @@ module.exports = class extends Generator {
             this.destinationPath('system'),
             this.props
         );
-        this.fs.copy(this.templatePath('gitignore/_gitignore'), this.destinationPath('.gitignore'));
-        this.fs.copyTpl(this.templatePath('web/**'), this.destinationPath('web'), this.props);
+        this.fs.copy(
+            this.templatePath('gitignore/_gitignore'),
+            this.destinationPath('.gitignore')
+        );
+        this.fs.copyTpl(
+            this.templatePath('web/**'),
+            this.destinationPath('web'),
+            this.props
+        );
+        if (this.props.installRemoteSync){
+            this.fs.copyTpl(
+                this.templatePath('remote-sync/_remote-sync.json'),
+                this.destinationPath('.remote-sync.json'),
+                this.props
+            );
+        }
+        if (this.props.installDploy) {
+            this.fs.copyTpl(
+                this.templatePath('dploy/dploy.yaml'),
+                this.destinationPath('dploy.yaml'),
+                this.props
+            );
+        }
+        if (this.props.installPHPloy) {
+            this.fs.copyTpl(
+                this.templatePath('phploy/phploy.ini'),
+                this.destinationPath('phploy.ini'),
+                this.props
+            );
+        }
     }
     
     _installNodePackages() {
@@ -232,7 +298,8 @@ module.exports = class extends Generator {
             'cross-env',
             'stmux',
             'node-sass',
-            'webpack@3',
+            'webpack',
+            'webpack-cli',
             'style-loader',
             'css-loader',
             'sass-loader',
@@ -241,14 +308,15 @@ module.exports = class extends Generator {
             'url-loader',
             'babel-core',
             'copy-webpack-plugin',
-            'extract-text-webpack-plugin',
+            'extract-text-webpack-plugin@next',
             'lodash',
             'jquery'
         ];
         if (this.props.installRemoteSync) packages.push('remote-sync-ds');
         if (this.props.installDploy) packages.push('dploy');
-        if (this.props.installLocalDevServer)
-        packages.push('@dieschittigs/contao-dev-server');
+        if (this.props.installLocalDevServer){
+            packages.push('@dieschittigs/contao-dev-server');
+        }
         this.npmInstall(packages, { 'save-dev': true });
     }
     
@@ -257,15 +325,19 @@ module.exports = class extends Generator {
         this.spawnCommandSync('php', [path.join(__dirname, 'scripts/install_composer.php')]);
         this.spawnCommandSync('php', ['composer.phar', 'install']);
     }
+
+    _installContaoManager() {
+        if (!this.props.installContaoManager) return;
+        this.spawnCommandSync('php', [path.join(__dirname, 'scripts/install_contao-manager.php')]);
+    }
     
     install() {
         this._installNodePackages();
         this._installComposerLocal();
+        this._installContaoManager();
     }
     
     end() {
-        if (!this.props.installRemoteSync) this.fs.delete('.remote-sync.json');
-        if (!this.props.installDploy) this.fs.delete('dploy.yaml');
         console.log('\n\n    All done! Enter `npm run` to see which tasks are available.\n\n');
     }
 };

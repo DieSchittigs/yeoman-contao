@@ -9,11 +9,15 @@
         "sync:watch": "node_modules/.bin/stmux -w always -e ERROR -m beep,system -t 'webpack sync:watch' -- [ 'npm run sync' .. 'npm run watch' ]",<% } %>
         <% if(installDploy){ %>"deploy:live": "npm run production && node_modules/.bin/dploy live",
         "deploy:live:vendor": "php composer.phar update && node_modules/.bin/dploy live_vendor",
-        "deploy:live:other": "node_modules/.bin/dploy live_other",
         "deploy:live:all": "npm run deploy:live && npm run deploy:live:vendor && npm run deploy:live:other",<% } %>
-        <% if(previewInDploy){ %>"deploy:preview": "npm run production && node_modules/.bin/dploy preview",
+        <% if(deployToRemoteSync && installDploy){ %>"deploy:preview": "npm run production && node_modules/.bin/dploy preview",
         "deploy:preview:vendor": "php composer.phar update && node_modules/.bin/dploy preview_vendor",
-        "deploy:preview:other": "node_modules/.bin/dploy preview_other",
+        "deploy:preview:all": "npm run deploy:preview && npm run deploy:preview:vendor && npm run deploy:preview:other",<% } %>
+        <% if(installPHPloy){ %>"deploy:live": "npm run production && vendor/bin/phploy -s live",
+        "deploy:live:vendor": "php composer.phar update && vendor/bin/phploy -s live_vendor",
+        "deploy:live:all": "npm run deploy:live && npm run deploy:live:vendor && npm run deploy:live:other",<% } %>
+        <% if(deployToRemoteSync && installPHPloy){ %>"deploy:preview": "npm run production && vendor/bin/phploy -s preview",
+        "deploy:preview:vendor": "php composer.phar update && vendor/bin/phploy -s preview_vendor",
         "deploy:preview:all": "npm run deploy:preview && npm run deploy:preview:vendor && npm run deploy:preview:other",<% } %>
         "dev": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --progress --hide-modules",
         "watch": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/webpack --watch --progress --hide-modules",

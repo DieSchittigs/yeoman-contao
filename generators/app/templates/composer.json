@@ -12,6 +12,9 @@
         "contao/newsletter-bundle": "<%= contaoVersion %>.*",
         "roave/security-advisories": "dev-master"
     },
+    "require-dev": {
+        <% if(installPHPloy){ %>"banago/phploy": "^4.8"<% } %>
+    },
     "config": {
         "component-dir": "assets"
     },
