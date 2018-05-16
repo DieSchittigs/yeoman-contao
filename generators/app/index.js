@@ -26,9 +26,24 @@ module.exports = class extends Generator {
             installDploy: 'Setup Dploy',
             installPHPloy: 'Setup PHPloy'
         };
+
+        const npmOptions = [
+            { value: 'jquery', title: 'jQuery - Still kickin\'', checked: true },
+            { value: 'slick-carousel', title: 'Slick - The last carousel you\'ll ever need', checked: false },
+            { value: 'stickyfilljs', title: 'StickFillJS - CSS position: sticky Polyfill', checked: false },
+            { value: 'smooth-scroll', title: 'Smooth Scroll - Animate scrolling to anchor links', checked: false },
+            { value: 'magnific-popup', title: 'Magnific Popup - Fast, light and responsive lightbox plugin for jQuery', checked: false },
+            { value: 'lodash', title: 'Lodash - A JavaScript utility library', checked: false },
+            { value: 'moment', title: 'Moment.js - Parse, validate, manipulate, and display dates and times', checked: false },
+            { value: 'axios', title: 'Axios - Promise based HTTP client ', checked: false },
+            { value: 'react react-dom', title: 'React - A library for building UIs', checked: false },
+            { value: 'mobx mobx-react', title: 'Mobx - Simple, scalable state management', checked: false },
+            { value: 'vue', title: 'Vue.js - The Progressive JavaScript Framework', checked: false }
+        ];
         
         this.props = {
-            deployToRemoteSync: false
+            deployToRemoteSync: false,
+            npmOptions: []
         };
         Object.keys(options).forEach(key => {
             this.props[key] = false;
@@ -69,7 +84,7 @@ module.exports = class extends Generator {
                     },
                     {
                         name: options.installContaoManager,
-                        checked: false
+                        checked: true
                     },
                     new inquirer.Separator(' = Synchronization = '),
                     {
@@ -202,12 +217,25 @@ module.exports = class extends Generator {
                 });
             }
             if (questions.length > 0) {
-                return inquirer.prompt(questions).then(answers => {
-                    for (let key in answers) {
-                        this.props[key] = answers[key];
-                    }
-                });
+                return inquirer.prompt(questions);
             }
+        }).then(answers => {
+            for (let key in answers) {
+                this.props[key] = answers[key];
+            }
+            const choices = npmOptions.map((npmOption)=>{
+                return { name: npmOption.title, checked: npmOption.checked, value: npmOption.value }
+            });
+            return inquirer.prompt([
+                {
+                    type: 'checkbox',
+                    message: 'Additional JS libraries',
+                    name: 'npmOptions',
+                    choices
+                }
+            ]).then(answers => {
+                this.props.npmOptions = answers.npmOptions;
+            });
         }).then(done);
     }
     
@@ -308,16 +336,17 @@ module.exports = class extends Generator {
             'url-loader',
             'babel-core',
             'copy-webpack-plugin',
-            'extract-text-webpack-plugin@next',
-            'lodash',
-            'jquery'
+            'extract-text-webpack-plugin@next'
         ];
+        let npmOptions = [];
+        this.props.npmOptions.forEach(npmOption => {
+            npmOptions = npmOptions.concat(npmOption.split(' '));
+        });
         if (this.props.installRemoteSync) packages.push('remote-sync-ds');
         if (this.props.installDploy) packages.push('dploy');
-        if (this.props.installLocalDevServer){
-            packages.push('@dieschittigs/contao-dev-server');
-        }
+        if (this.props.installLocalDevServer)packages.push('@dieschittigs/contao-dev-server');
         this.npmInstall(packages, { 'save-dev': true });
+        if(npmOptions.length) this.npmInstall(npmOptions, { 'save': true });
     }
     
     _installComposerLocal() {
