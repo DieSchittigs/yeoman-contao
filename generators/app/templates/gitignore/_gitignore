@@ -1,7 +1,6 @@
 *.sublime-workspace
 .phpintel
 .DS_Store
-localconfig.php
 /node_modules
 /vendor
 /assets
@@ -15,6 +14,7 @@ localconfig.php
 /web/share
 /web/system
 /web/.htaccess
+/app/config/parameters.yml
 mix-manifest.json
 contao-dev-server-error.log
 .yo*
