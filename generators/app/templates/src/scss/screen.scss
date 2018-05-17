@@ -7,8 +7,11 @@
 
 // Custom fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
-
+<% if(npmOptions.indexOf('font-awesome') >= 0){ %>
+// Font Awesome
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
+<% } %>
 // Global elements
 @import '/elements_global/ce_form';
 

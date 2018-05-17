@@ -16,8 +16,8 @@
         "/src/**"
     ],
     "watch": [
-        "/files/theme_<%= theme %>/js/script.js",
-        "/files/theme_<%= theme %>/css/screen.css"
+        "/files/theme_<%= theme %>/dist/script.js",
+        "/files/theme_<%= theme %>/dist/screen.css"
     ],
     "watch-ds": [
         "/files/**/*"

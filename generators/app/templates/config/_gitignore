@@ -1,0 +1,43 @@
+# some general stuff
+
+*.sublime-workspace
+.phpintel
+.DS_Store
+.yo*
+*.log
+*.tmp
+composer.phar
+
+# target folders for npm and composer
+
+/node_modules
+/vendor
+
+# generic contao files and folders
+
+/assets
+/var
+/web/app.php
+/web/app_dev.php
+/web/assets
+/web/bundles
+/web/share
+/web/system
+/web/.htaccess
+
+# ignore parameters.yml, as it gets written by the
+# contao installation and may differ on the live system
+
+/app/config/parameters.yml
+
+# ignore compiled theme files
+
+/files/theme_*/dist
+
+# ignore the system folder, but keep localconfig.php
+
+!/system/
+/system/*
+!/system/config/
+/system/config/*
+!/system/config/localconfig.php

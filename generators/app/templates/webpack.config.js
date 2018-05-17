@@ -8,22 +8,22 @@ const production = process.env.NODE_ENV === 'production';
 const config = {
     mode: production ? 'production' : 'development',
     output: {
-        path: path.resolve(__dirname, "files/theme_<%= theme %>"),
-        publicPath: '/files/theme_<%= theme %>'
+        path: path.resolve(__dirname, "files/theme_<%= theme %>/dist"),
+        publicPath: '/files/theme_<%= theme %>/dist'
     },
     module: {
         rules: [
             { test: /\.(png|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/fonts'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'fonts/', publicPath: '../'}
+                options: {outputPath: '/', publicPath: './'}
             } },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, include: path.join(__dirname, 'src/<%= theme %>/img'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'img/', publicPath: '../'}
+                options: {outputPath: '/', publicPath: './'}
             } },
             { test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg)$/, include: path.join(__dirname, 'node_modules'), loader: {
                 loader: 'file-loader',
-                options: {outputPath: 'lib/', publicPath: '../'}
+                options: {outputPath: '/', publicPath: './'}
             } }
         ]
     },
@@ -73,7 +73,7 @@ function createConfig(entry, outputFilename, rules, plugins = null){
 
 const jsConfig = createConfig(
     'js/script.js',
-    'js/script.js',
+    'script.js',
     [
         {
             test: /\.js$/,
@@ -93,7 +93,7 @@ const jsConfig = createConfig(
 
 const cssConfig = createConfig(
     'scss/screen.scss',
-    'css/screen.css',
+    'screen.css',
     {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
@@ -104,7 +104,7 @@ const cssConfig = createConfig(
             ]
         })
     },
-    new ExtractTextPlugin('css/screen.css')
+    new ExtractTextPlugin('screen.css')
 );
 
 module.exports = [jsConfig, cssConfig];

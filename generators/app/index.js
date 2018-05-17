@@ -29,13 +29,14 @@ module.exports = class extends Generator {
 
         const npmOptions = [
             { value: 'jquery', title: 'jQuery - Still kickin\'', checked: true },
-            { value: 'slick-carousel', title: 'Slick - The last carousel you\'ll ever need', checked: false },
+            { value: 'slick-carousel', title: 'Slick - The last carousel you\'ll ever need', checked: true },
             { value: 'stickyfilljs', title: 'StickFillJS - CSS position: sticky Polyfill', checked: false },
             { value: 'smooth-scroll', title: 'Smooth Scroll - Animate scrolling to anchor links', checked: false },
             { value: 'magnific-popup', title: 'Magnific Popup - Fast, light and responsive lightbox plugin for jQuery', checked: false },
             { value: 'lodash', title: 'Lodash - A JavaScript utility library', checked: false },
             { value: 'moment', title: 'Moment.js - Parse, validate, manipulate, and display dates and times', checked: false },
-            { value: 'axios', title: 'Axios - Promise based HTTP client ', checked: false },
+            { value: 'axios', title: 'Axios - Promise based HTTP client', checked: false },
+            { value: 'font-awesome', title: 'Font Awesome - The iconic font and CSS framework', checked: false },
             { value: 'react react-dom', title: 'React - A library for building UIs', checked: false },
             { value: 'mobx mobx-react', title: 'Mobx - Simple, scalable state management', checked: false },
             { value: 'vue', title: 'Vue.js - The Progressive JavaScript Framework', checked: false }
@@ -254,9 +255,10 @@ module.exports = class extends Generator {
             this.templatePath('app/.gitkeep'),
             this.destinationPath('app/.gitkeep')
         );
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('src/**'),
-            this.destinationPath('src/'.concat(this.props.theme))
+            this.destinationPath('src/'.concat(this.props.theme)),
+            this.props
         );
         this.fs.copy(
             this.templatePath('src/*/.*'),
@@ -285,7 +287,7 @@ module.exports = class extends Generator {
             this.props
         );
         this.fs.copy(
-            this.templatePath('gitignore/_gitignore'),
+            this.templatePath('config/_gitignore'),
             this.destinationPath('.gitignore')
         );
         this.fs.copyTpl(
@@ -295,21 +297,21 @@ module.exports = class extends Generator {
         );
         if (this.props.installRemoteSync){
             this.fs.copyTpl(
-                this.templatePath('remote-sync/_remote-sync.json'),
+                this.templatePath('config/_remote-sync.json'),
                 this.destinationPath('.remote-sync.json'),
                 this.props
             );
         }
         if (this.props.installDploy) {
             this.fs.copyTpl(
-                this.templatePath('dploy/dploy.yaml'),
+                this.templatePath('config/dploy.yaml'),
                 this.destinationPath('dploy.yaml'),
                 this.props
             );
         }
         if (this.props.installPHPloy) {
             this.fs.copyTpl(
-                this.templatePath('phploy/phploy.ini'),
+                this.templatePath('config/phploy.ini'),
                 this.destinationPath('phploy.ini'),
                 this.props
             );
