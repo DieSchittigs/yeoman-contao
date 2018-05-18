@@ -1,16 +1,17 @@
 import $ from 'jquery';
 import slick from 'slick-carousel';
 
+const opts = {
+    autoplay: false,
+    autoplaySpeed: 5000,
+    infinite: true,
+    speed: 300,
+    dots: true,
+    slidesToShow: 1
+};
+
 $(".content-slider").each(function(i){
     const $el = $(this);
-    const opts = {
-        autoplay: false,
-        autoplaySpeed: 5000,
-        infinite: true,
-        speed: 300,
-        dots: true,
-        slidesToShow: 1
-    };
     const config = $el.data('config').split(',');
     config.forEach((val, index) => {
         val = parseInt(val);
