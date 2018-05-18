@@ -1,7 +1,7 @@
 <?php
 
 ### INSTALL SCRIPT START ###
-$GLOBALS['TL_CONFIG']['websiteTitle'] = '<%= projectName %>';
+$GLOBALS['TL_CONFIG']['websiteTitle'] = 'Contao Open Source CMS';
 $GLOBALS['TL_CONFIG']['folderUrl'] = true;
 $GLOBALS['TL_CONFIG']['imageWidth'] = 2000;
 $GLOBALS['TL_CONFIG']['imageHeight'] = 2000;
