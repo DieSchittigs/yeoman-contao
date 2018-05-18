@@ -30,6 +30,9 @@ const config = {
     stats: {
         colors: true
     },
+    resolve: {
+        alias: { '~': path.resolve(__dirname, 'node_modules') }
+    },
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
