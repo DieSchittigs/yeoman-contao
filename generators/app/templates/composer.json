@@ -4,12 +4,8 @@
     "require": {
         "php": "^5.6|^7.0",
         "contao/manager-bundle": "<%= contaoVersion %>.*",
-        "contao/calendar-bundle": "<%= contaoVersion %>.*",
-        "contao/comments-bundle": "<%= contaoVersion %>.*",
-        "contao/faq-bundle": "<%= contaoVersion %>.*",
-        "contao/listing-bundle": "<%= contaoVersion %>.*",
-        "contao/news-bundle": "<%= contaoVersion %>.*",
-        "contao/newsletter-bundle": "<%= contaoVersion %>.*",
+        "contao/listing-bundle": "<%= contaoVersion %>.*",<% for(let i = 0; i < contaoOptions.length; i++){ %>
+        "contao/<%= contaoOptions[i] %>": "<%= contaoVersion %>.*",<% } %>
         "roave/security-advisories": "dev-master"
     },
     "require-dev": {

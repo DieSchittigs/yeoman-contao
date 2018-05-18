@@ -41,6 +41,14 @@ module.exports = class extends Generator {
             { value: 'mobx mobx-react', title: 'Mobx - Simple, scalable state management', checked: false },
             { value: 'vue', title: 'Vue.js - The Progressive JavaScript Framework', checked: false }
         ];
+
+        const contaoOptions = [
+            { value: 'news-bundle', title: 'News', checked: true },
+            { value: 'calendar-bundle', title: 'Calendar', checked: true },
+            { value: 'comments-bundle', title: 'Comments', checked: true },
+            { value: 'faq-bundle', title: 'FAQ', checked: true },
+            { value: 'newsletter-bundle', title: 'Newsletter', checked: true }
+        ];
         
         this.props = {
             deployToRemoteSync: false,
@@ -224,8 +232,25 @@ module.exports = class extends Generator {
             for (let key in answers) {
                 this.props[key] = answers[key];
             }
-            const choices = npmOptions.map((npmOption)=>{
-                return { name: npmOption.title, checked: npmOption.checked, value: npmOption.value }
+            const choices = contaoOptions.map((option)=>{
+                return { name: option.title, checked: option.checked, value: option.value }
+            });
+            return inquirer.prompt([
+                {
+                    type: 'checkbox',
+                    message: 'Which Contao Bundles should be installed?',
+                    name: 'contaoOptions',
+                    choices
+                }
+            ]).then(answers => {
+                this.props.contaoOptions = answers.contaoOptions;
+            });
+        }).then(answers => {
+            for (let key in answers) {
+                this.props[key] = answers[key];
+            }
+            const choices = npmOptions.map((option)=>{
+                return { name: option.title, checked: option.checked, value: option.value }
             });
             return inquirer.prompt([
                 {
