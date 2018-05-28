@@ -316,9 +316,13 @@ module.exports = class extends Generator {
             this.destinationPath('.gitignore')
         );
         this.fs.copyTpl(
-            this.templatePath('web/**'),
-            this.destinationPath('web'),
+            this.templatePath('web/icons_/*'),
+            this.destinationPath('web/icons_'.concat(this.props.theme)),
             this.props
+        );
+        this.fs.copy(
+            this.templatePath('web/*'),
+            this.destinationPath('web')
         );
         if (this.props.installRemoteSync){
             this.fs.copyTpl(
