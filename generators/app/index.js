@@ -30,9 +30,9 @@ module.exports = class extends Generator {
         const npmOptions = [
             { value: 'jquery', title: 'jQuery - Still kickin\'', checked: true },
             { value: 'slick-carousel', title: 'Slick - The last carousel you\'ll ever need', checked: true },
-            { value: 'stickyfilljs', title: 'StickFillJS - CSS position: sticky Polyfill', checked: false },
-            { value: 'smooth-scroll', title: 'Smooth Scroll - Animate scrolling to anchor links', checked: false },
-            { value: 'magnific-popup', title: 'Magnific Popup - Fast, light and responsive lightbox plugin for jQuery', checked: false },
+            { value: 'stickyfilljs', title: 'StickFillJS - CSS position: sticky Polyfill', checked: true },
+            { value: 'smooth-scroll', title: 'Smooth Scroll - Animate scrolling to anchor links', checked: true },
+            { value: 'magnific-popup', title: 'Magnific Popup - Fast, light and responsive lightbox plugin for jQuery', checked: true },
             { value: 'lodash', title: 'Lodash - A JavaScript utility library', checked: false },
             { value: 'moment', title: 'Moment.js - Parse, validate, manipulate, and display dates and times', checked: false },
             { value: 'axios', title: 'Axios - Promise based HTTP client', checked: false },
@@ -299,6 +299,18 @@ module.exports = class extends Generator {
             this.templatePath('files/theme_/.public'),
             this.destinationPath(
                 'files/theme_'.concat(this.props.theme).concat('/.public')
+            )
+        );
+        this.fs.copy(
+            this.templatePath('files/deleteme/*'),
+            this.destinationPath(
+                'files/deleteme'
+            )
+        );
+        this.fs.copy(
+            this.templatePath('files/deleteme/.*'),
+            this.destinationPath(
+                'files/deleteme'
             )
         );
         this.fs.copyTpl(

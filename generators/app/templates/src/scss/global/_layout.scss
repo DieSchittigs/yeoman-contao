@@ -1,13 +1,23 @@
-header {
+#header {
     height: 70px;
     background: $color-boxes;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
     .inside {
         @extend %contentwidth;
     }
 }
 
+#wrapper{
+    padding-top: 70px;
+}
+
 #container {
     @extend %contentwidth;
+    min-height: 100vh;
 }
 
 main {

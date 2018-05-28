@@ -1,36 +1,55 @@
 @import 'burger';
 
 body.mobilemenu{
-    transition: transform .25s ease-in-out;
-    transform: translateX(0);
+    #container {
+        transition: transform .25s ease-in-out;
+        transform: translateX(0);
+    }
 }
-
 body.mobilemenu.mobilemenu-active{
     overflow: hidden;
-    transform: translateX(80vw);
+    #container{
+        transform: translateX(80vw);
+    }
 }
 
-header .mod_navigation.main {
+#header .mod_navigation.main {
     @media(max-width: $show-mobile-menu){
         position: fixed;
         left: 0;
-        top: 0;
+        top: 70px;
         bottom: 0;
         width: 80vw;
         background: $color-boxes;
+        transition: transform .25s ease-in-out;
         transform: translateX(-80vw);
+        body.mobilemenu-active &{
+            transform: translateX(0);
+        }
+        ul.level_1{
+            overflow: hidden;
+            overflow-y: auto;
+            display: block;
+            > li{
+                > a, > strong {
+                    display: block;
+                    padding: 20px;
+                }
+            }    
+        }
         &:after{
             content: "";
             position: absolute;
             left: 80vw;
-            width: 100vw;
-            top: 70px;
+            width: 0;
+            top: 0;
             bottom: 0;
             background: rgba(0,0,0,.5);
             transition: opacity .5s ease-in-out;
             opacity: 0;
             body.mobilemenu-active &{
                 opacity: 1;
+                width: 100vw;
             }
         }
     }

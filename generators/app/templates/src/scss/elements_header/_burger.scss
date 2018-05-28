@@ -8,12 +8,12 @@
     right: 0;
     transition: transform .25s ease-in-out;
     transform: translateX(0);
+    z-index: 200;
     @media(max-width: $show-mobile-menu){
         body.mobilemenu &{
             display: block;
         }
         body.mobilemenu-active &{
-            transform: translateX(-80vw);
             height: 100vh;
         }
     }
