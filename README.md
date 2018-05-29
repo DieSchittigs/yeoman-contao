@@ -1,25 +1,29 @@
-# Generator Contao [![NPM version][npm-image]][npm-url]
+![Contao Generator Logo](https://i.imgur.com/ClmcR4q.png)
+
+# Contao Generator [![NPM version][npm-image]][npm-url]
 > Yeoman generator for Contao 4.4+ with SCSS and ES6 via WebPack
 
 ## Features
 
  * SCSS compilation via WebPack
- * ES6 support via WebPack
+ * ES6 support via Babel/WebPack
  * Basic theme scaffold included
- * [Integrated local development server](https://github.com/DieSchittigs/contao-dev-server)
+ * Installs jQuery, React, Vue, lodash and many more JS-libs, if you want to
+ * [Integrated local development server just for Contao 4](https://github.com/DieSchittigs/contao-dev-server)
+ * Batteries included
 
 ## Screencast
 
-![](https://i.imgur.com/wvgQ2qg.gif)
+![Screencast](https://i.imgur.com/wvgQ2qg.gif)
 
 ## Prerequisites
 
  * Mac OS or Linux*
  * PHP 7.1+
  * Node.js 8.9+
- * MySQL (optional)
+ * MySQL Server
 
-* Windows support can be achieved through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+\* Windows support can be achieved through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 ## Installation
 
@@ -35,6 +39,8 @@ Then generate your new project:
 ```bash
 yo @dieschittigs/contao
 ```
+
+That's it!
 
 ## Usage
 
