@@ -24,6 +24,7 @@ composer.phar
 /web/share
 /web/system
 /web/.htaccess
+/contao-manager
 
 # ignore parameters.yml, as it gets written by the
 # contao installation and may differ on the live system
