@@ -2,7 +2,10 @@
 
 echo "Installing Composer.phar" . PHP_EOL . PHP_EOL;
 copy('https://getcomposer.org/installer', 'composer-setup.php');
-if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') {
+$chksum = trim(
+    file_get_contents('https://composer.github.io/installer.sig')
+);
+if (hash_file('SHA384', 'composer-setup.php') === $chksum) {
     echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php');
 } echo PHP_EOL;
 echo `php composer-setup.php`;
