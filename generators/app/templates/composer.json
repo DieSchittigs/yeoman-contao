@@ -3,10 +3,9 @@
     "type": "project",
     "require": {
         "php": "^5.6|^7.0",
-        "contao/manager-bundle": "<%= contaoVersion %>.*",
         "contao/listing-bundle": "<%= contaoVersion %>.*",<% for(let i = 0; i < contaoOptions.length; i++){ %>
         "contao/<%= contaoOptions[i] %>": "<%= contaoVersion %>.*",<% } %>
-        "roave/security-advisories": "dev-master"
+        "contao/manager-bundle": "<%= contaoVersion %>.*"
     },
     "require-dev": {
         <% if(installPHPloy){ %>"banago/phploy": "^4.8"<% } %>
