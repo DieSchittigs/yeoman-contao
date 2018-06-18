@@ -23,6 +23,7 @@ composer.phar
 /web/bundles
 /web/share
 /web/system
+/web/files
 /web/.htaccess
 /contao-manager
 
