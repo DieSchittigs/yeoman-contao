@@ -23,9 +23,7 @@ $(".content-slider").each(function(i){
             case 1:
                 opts.speed = val;
             break;
-            case 2:
-                opts.slidesToShow = val;
-            break;
+            // Option 2 Offset is not supported in slick
             case 3:
                 opts.infinite = val > 0;
             break;
