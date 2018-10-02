@@ -3,6 +3,7 @@
 *.sublime-workspace
 .phpintel
 .DS_Store
+._*
 .yo*
 *.log
 *.tmp
