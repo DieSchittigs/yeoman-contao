@@ -62,7 +62,7 @@ module.exports = class extends Generator {
             {
                 type: 'input',
                 name: 'contaoVersion',
-                message: 'What version of Contao shell we use?',
+                message: 'What version of Contao shall we use?',
                 default: '4.4'
             },
             {
