@@ -8,6 +8,7 @@
     z-index: 100;
     .inside {
         @extend %contentwidth;
+        @extend .flex-nowrap;
     }
 }
 

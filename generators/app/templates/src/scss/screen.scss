@@ -16,6 +16,8 @@ $fa-font-path: "~font-awesome/fonts";
 @import '/elements_global/ce_form';
 
 // Header elements
+@import '/elements_header/logo';
+@import '/elements_header/burger';
 @import '/elements_header/mod_navigation_main';
 @import '/elements_header/mod_navigation_mobile';
 
@@ -33,6 +35,7 @@ $fa-font-path: "~font-awesome/fonts";
 @import '/elements_main/ce_downloads';
 @import '/elements_main/ce_player';
 @import '/elements_main/ce_slider';
+@import '/elements_main/image_container';
 
 // Side column elements
 

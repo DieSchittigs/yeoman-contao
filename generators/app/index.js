@@ -374,7 +374,7 @@ module.exports = class extends Generator {
             'style-loader',
             'css-loader',
             'sass-loader',
-            'babel-loader',
+            'babel-loader@7',
             'file-loader',
             'url-loader',
             'babel-core',
