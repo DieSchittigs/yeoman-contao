@@ -10,13 +10,11 @@
     "require-dev": {
         <% if(installPHPloy){ %>"banago/phploy": "^4.8"<% } %>
     },
-    "config": {
-        "component-dir": "assets"
-    },
     "extra": {
         "branch-alias": {
             "dev-<%= contaoVersion %>": "<%= contaoVersion %>.x-dev"
-        }
+        },
+        "contao-component-dir": "assets"
     },
     "scripts": {
         "post-install-cmd": [
