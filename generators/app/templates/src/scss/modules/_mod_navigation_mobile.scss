@@ -11,7 +11,7 @@ body.mobilemenu.mobilemenu-active{
     }
 }
 
-#header .mod_navigation.main {
+ .mod_navigation {
     @media(max-width: $show-mobile-menu){
         position: fixed;
         left: 0;
@@ -52,4 +52,3 @@ body.mobilemenu.mobilemenu-active{
         }
     }
 }
-

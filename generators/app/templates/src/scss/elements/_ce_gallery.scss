@@ -1,6 +1,6 @@
 <% if(npmOptions.indexOf('magnific-popup') >= 0){ %>@import '../global/magnific-popup';<% } %>
 
-main .ce_gallery {
+.ce_gallery {
     margin: $ce-margin 0;
     ul {
         @extend .flex-wrap;
@@ -44,7 +44,5 @@ main .ce_gallery {
                 transform: scale(1.05);
             }
         }
-
-
     }
 }
