@@ -54,11 +54,9 @@ if(production){
 }
 
 const loaderOptions = production ? {
-    sourceMap: false,
-    minimize: true
+    sourceMap: false
 } : {
-    sourceMap: true,
-    minimize: false
+    sourceMap: true
 };
 
 function createConfig(entry, outputFilename, rules, plugins = null){
