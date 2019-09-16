@@ -53,11 +53,7 @@ if(production){
     config.devtool = undefined;
 }
 
-const loaderOptions = production ? {
-    sourceMap: false
-} : {
-    sourceMap: true
-};
+const loaderOptions = { sourceMap: !production };
 
 function createConfig(entry, outputFilename, rules, plugins = null){
     const _config = _.cloneDeep(config);
