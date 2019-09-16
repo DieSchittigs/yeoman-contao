@@ -1,4 +1,4 @@
-<% if(npmOptions.indexOf('magnific-popup') >= 0){ %>@import '../global/magnific-popup';<% } %>
+<% if(npmOptions.indexOf('magnific-popup') >= 0){ %>@import '../base/magnific-popup';<% } %>
 
 .ce_gallery {
     margin: $ce-margin 0;
