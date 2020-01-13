@@ -1,8 +1,17 @@
 {
-    "name": "<%= projectName %>",
+    "name": "dieschittigs/<%= projectName %>",
     "type": "project",
+    "description": "Contao Open Source CMS",
+    "license": "LGPL-3.0-or-later"
+    "authors": [
+        {
+            "name": "Leo Feyer",
+            "homepage": "https://github.com/leofeyer"
+        }
+    ],
     "require": {
         "php": "^5.6|^7.0",
+        "contao/conflicts": "@dev",
         "contao/listing-bundle": "<%= contaoVersion %>.*",<% for(let i = 0; i < contaoOptions.length; i++){ %>
         "contao/<%= contaoOptions[i] %>": "<%= contaoVersion %>.*",<% } %>
         "contao/manager-bundle": "<%= contaoVersion %>.*"
