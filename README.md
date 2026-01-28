@@ -1,3 +1,6 @@
+# ⛔ Unmaintained ⛔
+This bundle has not been maintained for some time and should no longer be used.
+
 ![Contao Generator Logo](https://i.imgur.com/ClmcR4q.png)
 
 # Contao Generator [![NPM version][npm-image]][npm-url]
